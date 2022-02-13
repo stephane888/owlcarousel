@@ -1,0 +1,35 @@
+owlcarousel:
+  css:
+    theme:
+      lib/owl-carousel/owl.carousel.css: {}
+      lib/owl-carousel/owl.theme.css: {}
+      lib/owl-carousel/owl.transitions.css: {}
+  js:
+    lib/owl-carousel/owl.carousel.js: {}
+    js/owlcarousel.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+
+owlcarousel_config:
+  js:
+    js/owlcarousel.js: {}
+  dependencies:
+    - wb_universe/owlcarousel
+
+
+owl-theme-default:
+  css:
+    theme:
+      lib/owl-theme/owl-theme-default.css: {}
+  js:
+    lib/owl-theme/owl-theme-default.js: {}
+
+owl-rc-web:
+  css:
+    theme:
+      lib/owl-theme/owl-rc-web.css: {}
+  js:
+    lib/owl-theme/owl-rc-web.js: {}

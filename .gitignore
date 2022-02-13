@@ -1,0 +1,7 @@
+/vendor/
+/wbu-atomique-theme/node_modules/
+/wbu-atomique-theme/node_modules/package-lock.json
+# wbu-atomique-theme/entry.js
+# /layouts/css/
+# /layouts/js/
+/nbproject/private/
