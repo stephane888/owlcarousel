@@ -44,7 +44,8 @@ class OwlCarouselGlobal {
   public static function defaultThemes($key = null) {
     $themes = [
       'owl-theme-default' => 'Theme default',
-      'owl-rc-web' => 'Theme rc-web'
+      'owl-rc-web' => 'Theme rc-web',
+      'owl-rc-web container' => 'Theme rc-web with container'
     ];
     return isset($themes[$key]) ? $themes[$key] : $themes;
   }
