@@ -30,10 +30,10 @@ function template_preprocess_owlcarousel_views(array &$vars) {
   // Config set for owlcarousel.
   // This is then accessible in JS via drupalSettings.
   $vars['#attached']['drupalSettings']['owlcarousel_views'][$vars['id']] = Json::encode($settingsOwl);
-  if (!empty($settings['owl_theme'])) {
-    $wrappers_attributes->addClass($settings['owl_theme']);
-    $vars['wrappers_attributes'] = $wrappers_attributes;
-    if (!empty($settings['owl_theme_load']))
-      $vars['#attached']['library'][] = 'owlcarousel/' . $settings['owl_theme'];
+  if (!empty($settings['layoutgenentitystyles_view'])) {
+    $class = explode("/", $settings['layoutgenentitystyles_view']);
+    $wrappers_attributes->addClass($class);
   }
+  $wrappers_attributes->addClass($settings['owl_class']);
+  $vars['wrappers_attributes'] = $wrappers_attributes;
 }

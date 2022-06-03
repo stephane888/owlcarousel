@@ -5,6 +5,8 @@ namespace Drupal\owlcarousel\Plugin\views\style;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\owlcarousel\OwlCarouselGlobal;
 use Drupal\views\Plugin\views\style\StylePluginBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\layoutgenentitystyles\Services\LayoutgenentitystylesServices;
 
 /**
  * Style plugin to render each item into owl carousel.
@@ -36,6 +38,28 @@ class OwlCarouselViews extends StylePluginBase {
   protected $usesRowClass = TRUE;
   
   /**
+   *
+   * @var LayoutgenentitystylesServices
+   */
+  protected $LayoutgenentitystylesServices;
+  
+  // function __construct($configuration, $plugin_id, $plugin_definition,
+  // ExtensionPathResolver $ExtensionPathResolver) {
+  // parent::__construct($configuration, $plugin_id, $plugin_definition);
+  // $this->ExtensionPathResolver = $ExtensionPathResolver;
+  // }
+  
+  /**
+   *
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->LayoutgenentitystylesServices = $container->get('layoutgenentitystyles.add.style.theme');
+    return $instance;
+  }
+  
+  /**
    * Set default options.
    */
   protected function defineOptions() {
@@ -43,13 +67,28 @@ class OwlCarouselViews extends StylePluginBase {
     $options['owl_settings'] = [
       'default' => OwlCarouselGlobal::defaultSettings()
     ];
-    $options['owl_theme'] = [
+    
+    $options['layoutgenentitystyles_view'] = [
       'default' => ''
     ];
-    $options['owl_theme_load'] = [
-      'default' => true
+    $options['owl_class'] = [
+      'default' => ''
     ];
+    
     return $options;
+  }
+  
+  public function submitOptionsForm(&$form, FormStateInterface $form_state) {
+    parent::submitOptionsForm($form, $form_state);
+    // On recupere la valeur de la librairie et on ajoute:
+    
+    $library = $form_state->getValue([
+      'style_options',
+      'layoutgenentitystyles_view'
+    ]);
+    if (!empty($library)) {
+      $this->LayoutgenentitystylesServices->addStyleFromView($library, $this->view->id(), $this->view->current_display);
+    }
   }
   
   /**
@@ -157,17 +196,19 @@ class OwlCarouselViews extends StylePluginBase {
       '#default_value' => $this->options['owl_settings']['dots']
     ];
     
-    $form['owl_theme'] = [
+    $form['owl_class'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('class container owl'),
+      '#description' => $this->t(''),
+      '#default_value' => $this->options['owl_class']
+    ];
+    
+    $form['layoutgenentitystyles_view'] = [
       '#type' => 'select',
       '#title' => $this->t('Custom theme'),
       '#options' => OwlCarouselGlobal::defaultThemes(),
-      '#default_value' => $this->options['owl_theme'],
+      '#default_value' => $this->options['layoutgenentitystyles_view'],
       '#empty_option' => '- Select -'
-    ];
-    $form['owl_theme_load'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t(' Load theme style '),
-      '#default_value' => $this->options['owl_theme_load']
     ];
   }
   
