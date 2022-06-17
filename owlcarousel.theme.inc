@@ -19,6 +19,7 @@ function template_preprocess_owlcarousel_views(array &$vars) {
   $view = $vars['view'];
   $handler = $vars['view']->style_plugin;
   $settings = $handler->options;
+  
   // $settingsOwl = OwlCarouselGlobal::cleanSettings($settings);
   $settingsOwl = OwlCarouselGlobal::formatSettings($settings['owl_settings']);
   // dump($settings);
@@ -36,4 +37,15 @@ function template_preprocess_owlcarousel_views(array &$vars) {
   }
   $wrappers_attributes->addClass($settings['owl_class']);
   $vars['wrappers_attributes'] = $wrappers_attributes;
+  
+  //
+  if (!empty($settings['row_class'])) {
+    foreach ($vars['rows'] as $num => $row) {
+      $vars['rows'][$num]['attributes'] = [];
+      if ($row_class = $handler->getRowClass($num)) {
+        $vars['rows'][$num]['attributes']['class'][] = $row_class;
+      }
+      $vars['rows'][$num]['attributes'] = new Attribute($vars['rows'][$num]['attributes']);
+    }
+  }
 }
