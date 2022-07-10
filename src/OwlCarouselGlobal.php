@@ -45,7 +45,8 @@ class OwlCarouselGlobal {
     $themes = [
       'owlcarousel/owl-default' => 'Theme default',
       'owlcarousel/owl-rc-web' => 'Theme rc-web',
-      'owlcarousel/owl-rc-web-container' => 'Theme rc-web with container'
+      'owlcarousel/owl-rc-web-container' => 'Theme rc-web with container',
+      'owlcarousel/owl-f-news' => 'Theme f_news'
     ];
     return isset($themes[$key]) ? $themes[$key] : $themes;
   }
