@@ -1,11 +1,12 @@
-
 <div {{wrappers_attributes}}>
 	<div{{attributes}}>
 		{% if title %}
 			<h3>{{ title }}</h3>
 		{% endif %}
-		{% for row in rows %}
-			<div{{row.attributes}}>{{ row|without('attributes') }}</div>
+		{% for row in rows %}			
+			<div{{row.attributes}}>
+			{{ row|without('attributes') }}
+			</div>
 		{% endfor %}
 	</div>
 </div>
