@@ -81,7 +81,6 @@ class OwlCarouselViews extends StylePluginBase {
   public function submitOptionsForm(&$form, FormStateInterface $form_state) {
     parent::submitOptionsForm($form, $form_state);
     // On recupere la valeur de la librairie et on ajoute:
-    
     $library = $form_state->getValue([
       'style_options',
       'layoutgenentitystyles_view'

@@ -49,6 +49,7 @@ function owlcarousel_theme() {
  * Themeable for owlcarousel.
  */
 function template_preprocess_owlcarousel(&$variables) {
+  
   // $items = $variables['items'];
   
   // $settings = OwlCarouselGlobal::formatSettings($variables['settings']);

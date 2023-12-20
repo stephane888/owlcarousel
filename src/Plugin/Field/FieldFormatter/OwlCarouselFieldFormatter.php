@@ -22,11 +22,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @FieldFormatter(
  *   id = "owlcarousel_field_formatter",
- *   label = @Translation("OwlCarousel Carousel"),
+ *   label = @Translation("OwlCarousel Carousel, @deprecated use"),
  *   field_types = {
  *     "image"
  *   }
  * )
+ * @deprecated
  */
 class OwlCarouselFieldFormatter extends EntityReferenceFormatterBase implements ContainerFactoryPluginInterface {
   protected $currentUser;
@@ -152,7 +153,7 @@ class OwlCarouselFieldFormatter extends EntityReferenceFormatterBase implements 
       '#default_value' => $this->getSetting('rewindSpeed'),
       '#description' => $this->t('Rewind speed in milliseconds.')
     ];
-    // autoPlay.
+    // autoPlay.in
     $element['autoPlay'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('AutoPlay'),
@@ -344,20 +345,6 @@ class OwlCarouselFieldFormatter extends EntityReferenceFormatterBase implements 
         ]
       ]
     ];
-  }
-  
-  /**
-   * Generate the output appropriate for one field item.
-   *
-   * @param \Drupal\Core\Field\FieldItemInterface $item
-   *        One field item.
-   *        
-   * @return string The textual output generated.
-   */
-  protected function viewValue(FieldItemInterface $item) {
-    // The text value has no text format assigned to it, so the user input
-    // should equal the output, including newlines.
-    return nl2br(Html::escape($item->value));
   }
   
 }
