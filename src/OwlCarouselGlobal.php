@@ -27,7 +27,7 @@ class OwlCarouselGlobal {
       // 'rewindNav' => TRUE,
       // 'scrollPerPage' => FALSE,
       'pagination' => TRUE,
-      
+      'autoplayTimeout' => 15000,
       'responsiveRefreshRate' => 200,
       'mouseDrag' => TRUE,
       'touchDrag' => TRUE,
@@ -110,7 +110,7 @@ class OwlCarouselGlobal {
     $settings['touchDrag'] = (bool) $settings['touchDrag'];
     $settings['loop'] = (bool) $settings['loop'];
     $settings['autoPlay'] = (bool) $settings['autoPlay'];
+    $settings['autoplayTimeout'] = (int) $settings['autoplayTimeout'];
     return $settings;
   }
-  
 }

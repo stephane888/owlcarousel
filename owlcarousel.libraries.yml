@@ -1,9 +1,8 @@
 owlcarousel:
   css:
     theme:
-      lib/owl-carousel/owl.carousel.css: {}
-      lib/owl-carousel/owl.theme.css: {}
-      lib/owl-carousel/owl.transitions.css: {}
+      lib/owl-carousel/assets/owl.carousel.css: {}
+      lib/owl-carousel/assets/owl.theme.default.css: {}
   js:
     lib/owl-carousel/owl.carousel.js: {}
     js/owlcarousel.js: {}
@@ -13,10 +12,17 @@ owlcarousel:
     - core/drupalSettings
 
 owlcarousel_config:
+  css:	
+    theme:
+      lib/owl-carousel/assets/owl.carousel.css: {}
+      lib/owl-carousel/assets/owl.theme.default.css: {}
   js:
+    lib/owl-carousel/owl.carousel.js: {}
     js/owlcarousel.js: {}
   dependencies:
-    - wb_universe/owlcarousel
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
 
 
 owl-theme-default:

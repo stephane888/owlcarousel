@@ -22,12 +22,13 @@ function template_preprocess_owlcarousel_views(array &$vars) {
   
   // $settingsOwl = OwlCarouselGlobal::cleanSettings($settings);
   $settingsOwl = OwlCarouselGlobal::formatSettings($settings['owl_settings']);
-  // dump($settings);
+  
   $vars['id'] = OwlCarouselView::getUniqueId($view);
   $vars['attributes']['class'][] = 'owl-carousel';
   $vars['attributes']['class'][] = 'owl-theme';
   $vars['attributes']['id'] = $vars['id'];
   $vars['#attached']['library'][] = 'owlcarousel/owlcarousel_config';
+  
   // Config set for owlcarousel.
   // This is then accessible in JS via drupalSettings.
   $vars['#attached']['drupalSettings']['owlcarousel_views'][$vars['id']] = Json::encode($settingsOwl);
